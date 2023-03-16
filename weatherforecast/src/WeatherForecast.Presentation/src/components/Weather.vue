@@ -10,6 +10,7 @@
           <button class="btn btn-primary mb-3" @click="getWeather">Get Weather</button>
         </div>
         <div v-if="weather">
+          debugger;
           <h2 class="mb-4">{{ weather.name }}, {{ weather.sys.country }}</h2>
           <div class="row mb-4">
             <div class="col-md-4">
