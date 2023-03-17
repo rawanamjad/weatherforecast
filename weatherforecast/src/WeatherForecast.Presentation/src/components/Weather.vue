@@ -10,7 +10,6 @@
           <button class="btn btn-primary mb-3" @click="getWeather">Get Weather</button>
         </div>
         <div v-if="weather">
-          debugger;
           <h2 class="mb-4">{{ weather.name }}, {{ weather.sys.country }}</h2>
           <div class="row mb-4">
             <div class="col-md-4">
@@ -122,7 +121,7 @@ export default {
     saveSearchHistory() {
       const { name, main } = this.weather;
       const { temp, humidity } = main;
-      const search = { city: name, temp, humidity };
+      const search = { city: name, temp, humidity};
       this.history.push(search);
       localStorage.setItem("history", JSON.stringify(this.history));
     },
@@ -136,6 +135,7 @@ export default {
 .btn-primary {
   background-color: #007bff;
   border-color: #007bff;
+  margin-top: 10px;
 }
 
 .btn-primary:hover {

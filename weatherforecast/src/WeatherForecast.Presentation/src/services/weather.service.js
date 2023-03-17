@@ -1,45 +1,20 @@
-const baseUrl = 'https://api.openweathermap.org/data/2.5/';
-const apiUrl  = 'https://localhost:7001/api/weather'
 import axios from "axios";
 class WeatherService {
-  constructor(apiKey) {
-    this.apiKey = apiKey;
-  }
-
+ 
   async getWeatherByCity(city) {
-    debugger;
-    // const params = new URLSearchParams({
-    //  q: city,
-    //  appid: this.apiKey,
-    //  units: "metric"
-    // });
-    // const response = await fetch(`${baseUrl}weather?${params}`);
-    // if (!response.ok) {
-    //  throw new Error("Could not fetch weather data");
-    // }
-    // const data = await response.json();
-    // return data;
-     //return axios.get(apiUrl + "?city=" + city);
-     const response = await axios.get(apiUrl + "/byCity" + "?city=" + city);
-    //  if (!response.ok) {
-    //   debugger;
-    //  throw new Error("Could not fetch weather data");
-    // }
+     const response = await axios.get(process.env.VUE_APP_WEATHER_PROXY + "/byCity" + "?city=" + city);
+     if (response.status != 200) {
+      throw new Error("Could not fetch weather data");
+     }
     return response.data;
   }
   
-  static async getWeatherByZipCode(zipCode) {
-    const params = new URLSearchParams({
-      zip: zipCode,
-      appid: this.apiKey,
-      units: "metric"
-    });
-    const response = await fetch(`${baseUrl}weather?${params}`);
-    if (!response.ok) {
-      throw new Error("Could not fetch weather data");
-    }
-    const data = await response.json();
-    return data;
+  async getWeatherByZipCode(zipCode) {
+    const response = await axios.get(process.env.VUE_APP_WEATHER_PROXY + "/byZipCode" + "?zipCode=" + zipCode);
+    if (response.status != 200) {
+    throw new Error("Could not fetch weather data");
+   }
+   return response.data;
   }
 
   async getWeather(searchText) {
@@ -50,29 +25,24 @@ class WeatherService {
     } catch (error) {
       console.log(`Error getting weather data by city name: ${error.message}`);
   
-      // try {
-      //   // Try to get weather data by zip code
-      //   weatherData = await this.getWeatherByZipCode(searchText);
-      // } catch (error) {
-      //   console.log(`Error getting weather data by zip code: ${error.message}`);
-      // }
+      try {
+        // Try to get weather data by zip code
+        weatherData = await this.getWeatherByZipCode(searchText);
+      } catch (error) {
+        console.log(`Error getting weather data by zip code: ${error.message}`);
+      }
     }
     
   return weatherData;
 }
   async getForecast(city) {
-    const params = new URLSearchParams({
-      q: city,
-      appid: this.apiKey,
-      units: "metric"
-    });
-    const response = await fetch(`${baseUrl}forecast?${params}`);
-    if (!response.ok) {
-      throw new Error("Could not fetch weather data");
+    const response = await axios.get(process.env.VUE_APP_FORECAST_PROXY + "/byCity" + "?city=" + city);
+    if (!response.data) {
+      throw new Error("Could not fetch forecast data");
     }
-    const data = await response.json();
-    return data;
+    debugger;
+    return response.data;
   }
 }
 
-export default new WeatherService('fcadd28326c90c3262054e0e6ca599cd');
+export default new WeatherService();
