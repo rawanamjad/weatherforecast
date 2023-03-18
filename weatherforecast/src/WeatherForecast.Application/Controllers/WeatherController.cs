@@ -1,14 +1,11 @@
 ﻿using WeatherForecast.Application.Services;
-using WeatherForecast.Application.DTOs;
 using Microsoft.AspNetCore.Mvc;
-using System.Threading.Tasks;
-using Microsoft.Extensions.Configuration;
 
 namespace WeatherForecast.Application.Controllers
 {
     [ApiController]
-    [Route("api/weather")]
-    public class WeatherController
+    [Route("api/[controller]")]
+    public class WeatherController : ControllerBase
     {
         private readonly IWeatherForecastService _weatherForecastService;
         public WeatherController(IWeatherForecastService weatherForecastService)
@@ -19,55 +16,45 @@ namespace WeatherForecast.Application.Controllers
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="forecast"></param>
+        /// <param name="byCity"></param>
         /// <returns></returns>
-        [HttpGet("city/{cityName}")]
-        public async Task<ActionResult> GetWeatherForecast([FromQuery]WeatherForecastRequest weatherForecastRequest)
+        [HttpGet]
+        [Route("byCity")]
+        public async Task<ActionResult> GetWeatherForecastByCity(string city)
         {
-            //if (!ModelState.IsValid)
-            //{
-            //    return BadRequest(ModelState);
-            //}
-
-            if (weatherForecastRequest != null && !string.IsNullOrEmpty(weatherForecastRequest.City))
+            
+            if (!string.IsNullOrEmpty(city))
             {
-                var result = await _weatherForecastService.GetWeatherForecastByCity(weatherForecastRequest.City);
+                var result = await _weatherForecastService.GetWeatherForecastByCity(city);
 
-                //if (result != null && result.Forecasts.Count > 0)
-                //    return Json(result);
-                //else
-                //    return NoContent();
-                return null;
+                if (result != null)
+                    return Ok(result);
+
             }
-            //else if (weatherForecastRequest != null && !string.IsNullOrEmpty(weatherForecastRequest.ZipCode))
-            //{
-            //    var result = await _weatherForecastService.GetWeatherForecastByZipCode(weatherForecastRequest.ZipCode);
-
-            //    if (result != null && result.Forecasts.Count > 0)
-            //        return Json(result);
-            //    else
-            //        return NoContent();
-            //}
-
-            return null;
+          
+                   return NoContent();
         }
 
-        // [HttpGet]
-        // [Route("history")]
-        // public ActionResult GetHistory()
-        // {
-        //     if (!ModelState.IsValid)
-        //     {
-        //         return BadRequest(ModelState);
-        //     }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="byZipCode"></param>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("byZipCode")]
+        public async Task<ActionResult> GetWeatherForecastByZipCode(string zipCode)
+        {
 
+            if (!string.IsNullOrEmpty(zipCode))
+            {
+                var result = await _weatherForecastService.GetWeatherForecastByZipCode(zipCode);
 
-        //     var result = _weatherForecastService.GetHistory();
+                if (result != null)
+                    return Ok(result);
 
-        //     if (result != null && result.Count > 0)
-        //         return Json(result);
+            }
 
-        //     return NoContent();
-        // }
+            return NoContent();
+        }
     }
 }

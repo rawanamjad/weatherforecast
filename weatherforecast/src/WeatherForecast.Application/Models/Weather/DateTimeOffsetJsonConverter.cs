@@ -6,7 +6,7 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
-namespace WeatherForecast.Application.DTOs
+namespace WeatherForecast.Application.Models
 {
     public class DateTimeOffsetJsonConverter : JsonConverter<DateTimeOffset>
     {

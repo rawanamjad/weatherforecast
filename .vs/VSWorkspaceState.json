@@ -1,16 +1,7 @@
 {
   "ExpandedNodes": [
-    "",
-    "\\Local settings (.vs)\\weatherforecast\\config",
-    "\\weatherforecast",
-    "\\weatherforecast\\src",
-    "\\weatherforecast\\src\\WeatherForecast.Application",
-    "\\weatherforecast\\src\\WeatherForecast.Application\\bin\\Release\\net6.0",
-    "\\weatherforecast\\src\\WeatherForecast.Application\\bin\\Release\\net6.0\\ref",
-    "\\weatherforecast\\src\\WeatherForecast.Application\\wwwroot\\js",
-    "\\weatherforecast\\src\\WeatherForecast.Application\\wwwroot\\lib",
-    "\\weatherforecast\\src\\WeatherForecast.Application\\wwwroot\\lib\\bootstrap"
+    ""
   ],
-  "SelectedNode": "\\weatherforecast\\src\\WeatherForecast.Application\\Services",
+  "SelectedNode": "\\WeatherForecast.Application.sln",
   "PreviewInSolutionExplorer": false
 }
