@@ -40,7 +40,6 @@ class WeatherService {
     if (!response.data) {
       throw new Error("Could not fetch forecast data");
     }
-    debugger;
     return response.data;
   }
 }
