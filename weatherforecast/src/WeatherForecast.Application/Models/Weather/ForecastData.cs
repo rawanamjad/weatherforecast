@@ -14,6 +14,6 @@ namespace WeatherForecast.Application.Models
         public List<Weather> Weather { get; set; }
         public int? Visibility { get; set; }
         public string dt_txt { get; set; }
-        public DateTime dt { get; set; }
+        public int dt { get; set; }
     }
 }
