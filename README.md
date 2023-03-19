@@ -13,14 +13,14 @@ It also displays five days forecast starting from today's date including weather
 It also maintains the history of searched city and it's respective temperature and humidity percentage.
 
 ## Setup
-Use visual studio to run WeatherForecast.Application project. Run **dotnet restore** to restore nuget packages.
-Start the WeatherForecast.Application.cs proj. It displays an empty backend html file with 404 error but the project is running fine
-Copy Path of WeatherForecast.Presentation and change directory. Run the command **cd <copied path>** in visual code terminal.
-Run **npm install**
-Run **npx vue-cli-service build**
-Run **npx vue-cli-service serve** to start the Vue.js development server
-The frontend application runs on http://localhost:8080/ port
-The backend application runs on http://localhost:7001/ port
+* Use visual studio to run WeatherForecast.Application project. Run **dotnet restore** to restore nuget packages.
+* Start the WeatherForecast.Application.cs proj. It displays an empty backend html file with 404 error but the project is running fine
+* Copy Path of WeatherForecast.Presentation and change directory. Run the command **cd <copied path>** in visual code terminal.
+* Run **npm install**
+* Run **npx vue-cli-service build**
+* Run **npx vue-cli-service serve** to start the Vue.js development server
+* The frontend application runs on http://localhost:8080/ port
+* The backend application runs on http://localhost:7001/ port
 ![image](https://user-images.githubusercontent.com/52230299/226194948-52b0a7d9-c160-4678-80bf-1118af53b1d6.png)
 
 ## Coding Practices Used
